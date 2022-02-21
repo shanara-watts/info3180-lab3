@@ -36,7 +36,7 @@ def contact():
     #mail = Mail(app)
     form = ContactForm(request.form)
     if request.method == "POST" and form.validate():
-        msg = Message(form.subject.data,sender=(form.name.data,form.email.data),recipients=["to@example.com"])
+        msg = Message(request.form['subject'],sender=(request.form['name'],request.form['email']),recipients=["to@example.com"])
         msg.body = request.form['message']
         mail.send(msg)
         flash('Message Sent Successfully')
